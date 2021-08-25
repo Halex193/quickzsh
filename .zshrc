@@ -183,6 +183,7 @@ alias myip="wget -qO- https://wtfismyip.com/text"	# quickly show external ip add
 alias l="ls -lah"
 alias x="exit"
 alias k="k -h"						# show human readable filesizes, in kb, mb etc
+alias cl="clear"
 
 
 # CUSTOM FUNCTIONS
