@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 export TERM="xterm-256color"
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
@@ -29,6 +36,7 @@ POWERLEVEL9K_DIR_HOME_SUBFOLDER_BACKGROUND="054"
 # Context
 DEFAULT_USER=$USER
 POWERLEVEL9K_ALWAYS_SHOW_USER=true
+POWERLEVEL9K_CONTEXT_TEMPLATE="%n%m"
 
 POWERLEVEL9K_CONTEXT_DEFAULT_BACKGROUND="black"
 POWERLEVEL9K_CONTEXT_REMOTE_BACKGROUND="black"
