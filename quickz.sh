@@ -11,7 +11,7 @@ else
 fi
 
 
-if mv -n ~/.zshrc ~/.zshrc-backup-$(date +"%Y-%m-%d"); then # backup .zshrc
+if mv -n ~/.zshrc ~/.zshrc-backup-"$(date +"%Y-%m-%d")"; then # backup .zshrc
     echo -e "Backed up the current .zshrc to .zshrc-backup-date\n"
 fi
 
@@ -67,14 +67,6 @@ if [ -d ~/.oh-my-zsh/custom/themes/powerlevel10k ]; then
     cd ~/.oh-my-zsh/custom/themes/powerlevel10k && git pull
 else
     git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.oh-my-zsh/custom/themes/powerlevel10k
-fi
-
-if [ -d ~/.quickzsh/fzf ]; then
-    cd ~/.quickzsh/fzf && git pull
-    ~/.quickzsh/fzf/install --all --key-bindings --completion --no-update-rc --64
-else
-    git clone --depth 1 https://github.com/junegunn/fzf.git ~/.quickzsh/fzf
-    ~/.quickzsh/fzf/install --all --key-bindings --completion --no-update-rc --64
 fi
 
 if [ -d ~/.oh-my-zsh/custom/plugins/k ]; then
@@ -134,7 +126,7 @@ fi
 # source ~/.zshrc
 echo -e "\nSudo access is needed to change default shell\n"
 
-if chsh -s $(which zsh) && /bin/zsh -i -c upgrade_oh_my_zsh; then
+if chsh -s "$(which zsh)" && /bin/zsh -i -c upgrade_oh_my_zsh; then
     echo -e "Installation Successful, exit terminal and enter a new session"
 else
     echo -e "Something is wrong"

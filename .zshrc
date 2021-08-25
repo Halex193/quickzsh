@@ -14,21 +14,47 @@ POWERLEVEL9K_MODE='nerdfont-complete'
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
-POWERLEVEL9K_OS_ICON_BACKGROUND="white"
-POWERLEVEL9K_OS_ICON_FOREGROUND="blue"
-POWERLEVEL9K_DIR_HOME_FOREGROUND="white"
-POWERLEVEL9K_DIR_HOME_SUBFOLDER_FOREGROUND="white"
-POWERLEVEL9K_DIR_DEFAULT_FOREGROUND="white"
+# Icon
+# POWERLEVEL9K_OS_ICON_BACKGROUND="darkblue"
+POWERLEVEL9K_OS_ICON_FOREGROUND="white"
 
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(virtualenv status command_execution_time background_jobs todo ram load rvm time)
+# Dir
+POWERLEVEL9K_DIR_FOREGROUND="white"
+# POWERLEVEL9K_DIR_HOME_SUBFOLDER_FOREGROUND="white"
+# POWERLEVEL9K_DIR_DEFAULT_FOREGROUND="white"
+POWERLEVEL9K_DIR_BACKGROUND="027"
+POWERLEVEL9K_DIR_HOME_BACKGROUND="054"
+POWERLEVEL9K_DIR_HOME_SUBFOLDER_BACKGROUND="054"
+
+# Context
+DEFAULT_USER=$USER
+POWERLEVEL9K_ALWAYS_SHOW_USER=true
+
+POWERLEVEL9K_CONTEXT_DEFAULT_BACKGROUND="black"
+POWERLEVEL9K_CONTEXT_REMOTE_BACKGROUND="black"
+POWERLEVEL9K_CONTEXT_ROOT_BACKGROUND="088"
+POWERLEVEL9K_CONTEXT_SUDO_BACKGROUND="088"
+POWERLEVEL9K_CONTEXT_REMOTE_SUDO_BACKGROUND="088"
+POWERLEVEL9K_CONTEXT_FOREGROUND="white"
+
+# SSH
+POWERLEVEL9K_SSH_BACKGROUND="black"
+POWERLEVEL9K_SSH_FOREGROUND="white"
+
+# Command execution time
+POWERLEVEL9K_COMMAND_EXECUTION_TIME_FOREGROUND="white"
+POWERLEVEL9K_COMMAND_EXECUTION_TIME_BACKGROUND="black"
+
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status command_execution_time os_icon)
 
 # more prompt elements that are suggested
 # (public_ip docker_machine pyenv nvm)          https://github.com/bhilburn/powerlevel9k#prompt-customization
 # Note: using public_ip is cool but when connection is down prompt waits for 10-20 seconds
 
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(ssh os_icon context dir rbenv vcs)
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(ssh context dir vcs)
 
 POWERLEVEL9K_PROMPT_ON_NEWLINE=true
+POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
 
 
 # Uncomment the following line to use case-sensitive completion.
@@ -131,11 +157,6 @@ export PATH=$PATH:~/.local/bin
 NPM_PACKAGES="${HOME}/.npm"
 PATH="$NPM_PACKAGES/bin:$PATH"
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-export FZF_DEFAULT_OPS="--extended"
-
-export MARKER_KEY_NEXT_PLACEHOLDER="\C-b"   #change maker key binding from Ctr+t to Ctr+b
-
 [[ -s "$HOME/.local/share/marker/marker.sh" ]] && source "$HOME/.local/share/marker/marker.sh"
 
 export PATH=$PATH:~/.quickzsh/todo/bin    #usig alias doesn't properly work
@@ -178,21 +199,6 @@ speedtest() {
     curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python3 -
 }
 
-dadjoke() {
-    curl https://icanhazdadjoke.com
-}
-
-# Find dictionary definition
-dict() {
-    if [ "$3" ]; then
-        curl "dict://dict.org/d:$1 $2 $3"
-    elif [ "$2" ]; then
-        curl "dict://dict.org/d:$1 $2"
-    else
-        curl "dict://dict.org/d:$1"
-    fi
-}
-
 # Find geo info from IP
 ipgeo() {
     # Specify ip or your ip will be used
@@ -200,15 +206,5 @@ ipgeo() {
         curl "http://api.db-ip.com/v2/free/$1"
     else
         curl "http://api.db-ip.com/v2/free/$(myip)"
-    fi
-}
-
-# Show covid-19 spread stats
-corona() {
-    # Specify country otherwise shows stats for all
-    if [ "$1" ]; then
-        curl "https://corona-stats.online/$1"
-    else
-        curl "https://corona-stats.online"
     fi
 }
